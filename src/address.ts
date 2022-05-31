@@ -23,3 +23,5 @@ class Address {
     if (!this._city) throw new Error("City is required.");
   }
 }
+
+export { Address };
