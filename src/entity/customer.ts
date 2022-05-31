@@ -41,3 +41,5 @@ class Customer {
     if (!this._name) throw new Error("Name is required.");
   }
 }
+
+export { Customer };
