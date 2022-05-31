@@ -1,20 +1,21 @@
+/* eslint-disable no-underscore-dangle */
 import { Address } from "./address";
 
 class Customer {
-  id: string;
-  name = "";
-  address!: Address;
-  active = false;
+  private _id: string;
+  private _name = "";
+  private _address!: Address;
+  private _active = false;
 
   constructor(id: string, name: string) {
-    this.id = id;
-    this.name = name;
+    this._id = id;
+    this._name = name;
 
     this.validate();
   }
 
   changeName(name: string): void {
-    this.name = name;
+    this._name = name;
 
     this.validate();
   }
@@ -24,21 +25,33 @@ class Customer {
       throw new Error("Address is mandatory to activate a customer.");
     }
 
-    this.active = true;
+    this._active = true;
   }
 
   deactivate() {
-    this.active = false;
+    this._active = false;
   }
 
-  set Address(address: Address) {
-    this.address = address;
+  isActive(): boolean {
+    return this._active;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  set address(address: Address) {
+    this._address = address;
+  }
+
+  get address(): Address {
+    return this._address;
   }
 
   validate() {
-    if (!this.id) throw new Error("Id is required.");
+    if (!this._id) throw new Error("Id is required.");
 
-    if (!this.name) throw new Error("Name is required.");
+    if (!this._name) throw new Error("Name is required.");
   }
 }
 

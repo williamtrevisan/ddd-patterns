@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Address } from "./address";
 import { Customer } from "./customer";
 
@@ -24,7 +25,12 @@ describe("Customer unit tests", () => {
 
   it("should activate customer", () => {
     const customer = new Customer("1", "Customer 1");
-    const address = new Address("Street 1", 123, "95700-000", "Bento Gonçalves");
+    const address = new Address(
+      "Street 1",
+      123,
+      "95700-000",
+      "Bento Gonçalves"
+    );
     customer.address = address;
 
     customer.activate();
