@@ -1,5 +1,9 @@
+import { Customer } from "./customer";
+
 describe("Customer unit tests", () => {
-  it("should get 1 as result", () => {
-    expect(1).toBe(1);
+  it("should throw error when id is empty", () => {
+    expect(() => {
+      const customer = new Customer("", "John");
+    }).toThrowError("Id is required.");
   });
 });
