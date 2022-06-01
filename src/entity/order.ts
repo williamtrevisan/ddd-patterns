@@ -12,10 +12,20 @@ class Order {
     this._customerId = customerId;
     this._items = items;
     this._total = this.total();
+
+    this.validate();
   }
 
   total(): number {
     return this._items.reduce((acc, item) => acc + item.price, 0);
+  }
+
+  validate() {
+    if (!this._id) throw new Error("Id is required.");
+
+    if (!this._customerId) throw new Error("CustomerId is required.");
+
+    if (!this._items.length) throw new Error("Items are required.");
   }
 }
 
