@@ -3,7 +3,7 @@ import { Customer } from "../../domain/entity/customer";
 import { CustomerRepositoryInterface } from "../../domain/repository/customer.repository.interface";
 import { CustomerModel } from "../db/sequelize/model/customer.model";
 
-export default class CustomerRepository implements CustomerRepositoryInterface {
+class CustomerRepository implements CustomerRepositoryInterface {
   async create(entity: Customer): Promise<void> {
     await CustomerModel.create({
       id: entity.id,
@@ -89,3 +89,5 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
     return customers;
   }
 }
+
+export { CustomerRepository };

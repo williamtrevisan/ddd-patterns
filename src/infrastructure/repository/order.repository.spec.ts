@@ -9,7 +9,8 @@ import { CustomerModel } from "../db/sequelize/model/customer.model";
 import { OrderItemModel } from "../db/sequelize/model/order_item.model";
 import { OrderModel } from "../db/sequelize/model/order.model";
 import { ProductModel } from "../db/sequelize/model/product.model";
-import CustomerRepository from "./customer.repository";
+import { CustomerRepository } from "./customer.repository";
+import { OrderRepository } from "./order.repository";
 import { ProductRepository } from "./product.repository";
 
 describe("Customer repository test", () => {
@@ -50,9 +51,9 @@ describe("Customer repository test", () => {
 
     const ordemItem = new OrderItem(
       "orderItemId",
+      product.id,
       product.name,
       product.price,
-      product.id,
       2
     );
 
@@ -73,11 +74,11 @@ describe("Customer repository test", () => {
       items: [
         {
           id: ordemItem.id,
-          name: ordemItem.name,
-          quantity: ordemItem.quantity,
-          price: ordemItem.price,
           order_id: "orderId",
           product_id: "productId",
+          name: ordemItem.name,
+          price: ordemItem.price,
+          quantity: ordemItem.quantity,
         },
       ],
     });
