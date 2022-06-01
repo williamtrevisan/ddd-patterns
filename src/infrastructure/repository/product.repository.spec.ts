@@ -40,4 +40,36 @@ describe("Product repository test", () => {
       price: 100,
     });
   });
+
+  it("should update a product", async () => {
+    const productRepository = new ProductRepository();
+    const product = new Product("productId", "Product name", 100);
+
+    await productRepository.create(product);
+
+    const productModel = await ProductModel.findOne({
+      where: { id: "productId" },
+    });
+
+    expect(productModel?.toJSON()).toStrictEqual({
+      id: "productId",
+      name: "Product name",
+      price: 100,
+    });
+
+    product.changeName("Product name edited");
+    product.changePrice(150);
+
+    await productRepository.update(product);
+
+    const productModel2 = await ProductModel.findOne({
+      where: { id: "productId" },
+    });
+
+    expect(productModel2?.toJSON()).toStrictEqual({
+      id: "productId",
+      name: "Product name edited",
+      price: 150,
+    });
+  });
 });
