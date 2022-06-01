@@ -20,7 +20,7 @@ class OrderItem {
     this._quantity = quantity;
   }
 
-  chanqeQuantity(quantity: number): void {
+  changeQuantity(quantity: number): void {
     this._quantity = quantity;
   }
 
