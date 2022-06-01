@@ -19,4 +19,12 @@ describe("Product unit tests", () => {
       const product = new Product("productId", "Product name", -1);
     }).toThrowError("Price must be greater than zero.");
   });
+
+  it("should change name", () => {
+    const product = new Product("productId", "Product name", 100);
+
+    product.changeName("Product name edited");
+
+    expect(product.name).toBe("Product name edited");
+  });
 });
