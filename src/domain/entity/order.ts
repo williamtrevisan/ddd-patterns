@@ -16,21 +16,6 @@ class Order {
     this.validate();
   }
 
-  addItems(items: OrderItem[]) {
-    items.forEach((item) => this._items.push(item));
-  }
-
-  removeItems(productsId: string[]): void {
-    productsId.forEach((productId) => {
-      const itemIndex = this._items.findIndex(
-        (item) => item.productId === productId
-      );
-      if (itemIndex < 0) return;
-
-      this._items.splice(itemIndex, 1);
-    });
-  }
-
   get id(): string {
     return this._id;
   }
