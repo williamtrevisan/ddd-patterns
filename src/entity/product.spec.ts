@@ -27,4 +27,12 @@ describe("Product unit tests", () => {
 
     expect(product.name).toBe("Product name edited");
   });
+
+  it("should change price", () => {
+    const product = new Product("productId", "Product name", 100);
+
+    product.changePrice(150);
+
+    expect(product.price).toBe(150);
+  });
 });
