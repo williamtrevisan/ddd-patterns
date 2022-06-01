@@ -7,4 +7,10 @@ describe("Product unit tests", () => {
       const product = new Product("", "Product 1", 100);
     }).toThrowError("Id is required.");
   });
+
+  it("should throw error when name is empty", () => {
+    expect(() => {
+      const product = new Product("productId", "", 100);
+    }).toThrowError("Name is required.");
+  });
 });
