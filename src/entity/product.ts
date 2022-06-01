@@ -16,8 +16,16 @@ class Product {
     this._name = name;
   }
 
+  changePrice(price: number) {
+    this._price = price;
+  }
+
   get name(): string {
     return this._name;
+  }
+
+  get price(): number {
+    return this._price;
   }
 
   validate() {
