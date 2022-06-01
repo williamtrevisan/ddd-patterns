@@ -27,7 +27,6 @@ describe("Product repository test", () => {
   it("should create a product", async () => {
     const productRepository = new ProductRepository();
     const product = new Product("productId", "Product name", 100);
-
     await productRepository.create(product);
 
     const productModel = await ProductModel.findOne({
@@ -44,7 +43,6 @@ describe("Product repository test", () => {
   it("should update a product", async () => {
     const productRepository = new ProductRepository();
     const product = new Product("productId", "Product name", 100);
-
     await productRepository.create(product);
 
     const productModel = await ProductModel.findOne({
@@ -59,7 +57,6 @@ describe("Product repository test", () => {
 
     product.changeName("Product name edited");
     product.changePrice(150);
-
     await productRepository.update(product);
 
     const productModel2 = await ProductModel.findOne({
@@ -70,6 +67,20 @@ describe("Product repository test", () => {
       id: "productId",
       name: "Product name edited",
       price: 150,
+    });
+  });
+
+  it("should find a product", async () => {
+    const productRepository = new ProductRepository();
+    const product = new Product("productId", "Product name", 100);
+    await productRepository.create(product);
+
+    const foundProduct = await productRepository.find("productId");
+
+    expect(product).toStrictEqual({
+      id: foundProduct.id,
+      name: foundProduct.name,
+      price: foundProduct.price,
     });
   });
 });
