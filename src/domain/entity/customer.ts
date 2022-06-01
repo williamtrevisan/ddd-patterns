@@ -21,6 +21,10 @@ class Customer {
     this.validate();
   }
 
+  changeAddress(address: Address) {
+    this._address = address;
+  }
+
   activate() {
     if (!this.address) {
       throw new Error("Address is mandatory to activate a customer.");

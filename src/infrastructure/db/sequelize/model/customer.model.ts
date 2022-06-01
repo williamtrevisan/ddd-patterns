@@ -22,6 +22,9 @@ class CustomerModel extends Model {
   declare zipcode: string;
 
   @Column({ allowNull: false })
+  declare city: string;
+
+  @Column({ allowNull: false })
   declare active: boolean;
 
   @Column({ allowNull: false })
