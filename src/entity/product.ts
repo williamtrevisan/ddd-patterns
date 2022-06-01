@@ -12,6 +12,14 @@ class Product {
     this.validate();
   }
 
+  changeName(name: string) {
+    this._name = name;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
   validate() {
     if (!this._id) throw new Error("Id is required.");
 
