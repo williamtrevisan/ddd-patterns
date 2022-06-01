@@ -16,6 +16,8 @@ class Product {
     if (!this._id) throw new Error("Id is required.");
 
     if (!this._name) throw new Error("Name is required.");
+
+    if (this._price < 0) throw new Error("Price must be greater than zero.");
   }
 }
 
