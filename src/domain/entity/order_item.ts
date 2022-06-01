@@ -20,6 +20,10 @@ class OrderItem {
     this._quantity = quantity;
   }
 
+  chanqeQuantity(quantity: number): void {
+    this._quantity = quantity;
+  }
+
   get id(): string {
     return this._id;
   }
