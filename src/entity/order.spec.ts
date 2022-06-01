@@ -22,18 +22,18 @@ describe("Order unit test", () => {
   });
 
   it("should calculate total", () => {
-    const item_one = new OrderItem("itemId1", "Item 1", 100);
-    const item_two = new OrderItem("itemId2", "Item 2", 200);
+    const item_one = new OrderItem("itemId1", "Item 1", 100, "productId1", 2);
+    const item_two = new OrderItem("itemId2", "Item 2", 200, "productId2", 2);
     const order_one = new Order("orderId1", "customerId", [item_one]);
 
     let total = order_one.total();
 
-    expect(total).toBe(100);
+    expect(total).toBe(200);
 
     const order_two = new Order("orderId2", "customerId", [item_one, item_two]);
 
     total = order_two.total();
 
-    expect(total).toBe(300);
+    expect(total).toBe(600);
   });
 });
