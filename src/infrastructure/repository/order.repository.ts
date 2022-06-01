@@ -1,5 +1,4 @@
 import { Order } from "../../domain/entity/order";
-import { OrderItem } from "../../domain/entity/order_item";
 import { OrderRepositoryInterface } from "../../domain/repository/order.repository.interface";
 import { OrderItemModel } from "../db/sequelize/model/order_item.model";
 import { OrderModel } from "../db/sequelize/model/order.model";

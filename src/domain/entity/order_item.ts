@@ -20,10 +20,6 @@ class OrderItem {
     this._quantity = quantity;
   }
 
-  changeQuantity(quantity: number): void {
-    this._quantity = quantity;
-  }
-
   get id(): string {
     return this._id;
   }
