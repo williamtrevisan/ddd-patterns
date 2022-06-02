@@ -1,5 +1,4 @@
 import { Sequelize } from "sequelize-typescript";
-import { v4 as uuidV4 } from "uuid";
 
 import { Address } from "../../domain/entity/address";
 import { Customer } from "../../domain/entity/customer";
@@ -14,7 +13,7 @@ import { CustomerRepository } from "./customer.repository";
 import { OrderRepository } from "./order.repository";
 import { ProductRepository } from "./product.repository";
 
-describe("Customer repository test", () => {
+describe("Order repository test", () => {
   let sequelize: Sequelize;
 
   beforeEach(async () => {
@@ -96,7 +95,7 @@ describe("Customer repository test", () => {
     const product = new Product("productId", "Product name", 10);
     await productRepository.create(product);
 
-    const ordemItem = new OrderItem(
+    const orderItem = new OrderItem(
       "orderItemId",
       product.id,
       product.name,
@@ -104,7 +103,7 @@ describe("Customer repository test", () => {
       2
     );
 
-    const order = new Order("orderId", "customerId", [ordemItem]);
+    const order = new Order("orderFindOrderId", "customerId", [orderItem]);
 
     const orderRepository = new OrderRepository();
     await orderRepository.create(order);

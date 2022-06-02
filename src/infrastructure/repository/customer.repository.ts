@@ -44,7 +44,6 @@ class CustomerRepository implements CustomerRepositoryInterface {
         where: {
           id,
         },
-
         rejectOnEmpty: true,
       });
     } catch (error) {
