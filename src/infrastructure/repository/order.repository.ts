@@ -1,5 +1,3 @@
-import { Sequelize } from "sequelize-typescript";
-
 import { Order } from "../../domain/entity/order";
 import { OrderItem } from "../../domain/entity/order_item";
 import { OrderRepositoryInterface } from "../../domain/repository/order.repository.interface";
@@ -28,11 +26,43 @@ class OrderRepository implements OrderRepositoryInterface {
   }
 
   async update(entity: Order): Promise<void> {
-    try {
-      const result = await Sequelize.transaction(async (transaction) => {});
-    } catch (error) {
-      // ...
-    }
+    const orderItemsModel = await OrderItemModel.findAll({
+      where: { order_id: entity.id },
+    });
+
+    orderItemsModel.forEach((orderItem) => {
+      const itemEntity = entity.items.find((item) => item.id === orderItem.id);
+      if (!itemEntity) {
+        OrderItemModel.destroy({ where: { id: orderItem.id } });
+
+        return;
+      }
+
+      if (itemEntity.quantity !== orderItem.quantity) {
+        OrderItemModel.update(
+          { quantity: itemEntity.quantity },
+          { where: { id: itemEntity.id } }
+        );
+      }
+    });
+
+    entity.items.forEach((item) => {
+      const itemModel = orderItemsModel.find(
+        (orderItem) => orderItem.id === item.id
+      );
+      if (!itemModel) {
+        OrderItemModel.create({
+          id: item.id,
+          order_id: entity.id,
+          product_id: item.productId,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+        });
+      }
+    });
+
+    OrderModel.update({ total: entity.total() }, { where: { id: entity.id } });
   }
 
   async find(id: string): Promise<Order> {
