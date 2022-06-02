@@ -1,3 +1,5 @@
+import { Sequelize } from "sequelize-typescript";
+
 import { Order } from "../../domain/entity/order";
 import { OrderItem } from "../../domain/entity/order_item";
 import { OrderRepositoryInterface } from "../../domain/repository/order.repository.interface";
@@ -26,7 +28,11 @@ class OrderRepository implements OrderRepositoryInterface {
   }
 
   async update(entity: Order): Promise<void> {
-    throw new Error("Method not implemented.");
+    try {
+      const result = await Sequelize.transaction(async (transaction) => {});
+    } catch (error) {
+      // ...
+    }
   }
 
   async find(id: string): Promise<Order> {
