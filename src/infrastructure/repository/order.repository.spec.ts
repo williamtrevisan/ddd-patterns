@@ -49,7 +49,7 @@ describe("Order repository test", () => {
     const product = new Product("productId", "Product name", 10);
     await productRepository.create(product);
 
-    const ordemItem = new OrderItem(
+    const orderItem = new OrderItem(
       "orderItemId",
       product.id,
       product.name,
@@ -57,7 +57,7 @@ describe("Order repository test", () => {
       2
     );
 
-    const order = new Order("orderId", "customerId", [ordemItem]);
+    const order = new Order("orderId", "customerId", [orderItem]);
 
     const orderRepository = new OrderRepository();
     await orderRepository.create(order);
@@ -73,12 +73,12 @@ describe("Order repository test", () => {
       total: order.total(),
       items: [
         {
-          id: ordemItem.id,
+          id: orderItem.id,
           order_id: "orderId",
           product_id: "productId",
-          name: ordemItem.name,
-          price: ordemItem.price,
-          quantity: ordemItem.quantity,
+          name: orderItem.name,
+          price: orderItem.price,
+          quantity: orderItem.quantity,
         },
       ],
     });
@@ -115,53 +115,60 @@ describe("Order repository test", () => {
 
   it("should find all orders", async () => {
     const customerRepository = new CustomerRepository();
-    const customerOne = new Customer("customerId", "Customer name");
-    const addressOne = new Address("Street", 1, "postalCode", "City name");
-    customerOne.changeAddress(addressOne);
-    await customerRepository.create(customerOne);
+    const customer1 = new Customer("customerId1", "Customer name 1");
+    const address1 = new Address("Street1", 1, "postalCode1", "City name 1");
+    customer1.address = address1;
+    customer1.activate();
+    await customerRepository.create(customer1);
 
     const productRepository = new ProductRepository();
-    const productOne = new Product("productId", "Product name", 10);
-    await productRepository.create(productOne);
+    const product1 = new Product("productId1", "Product name 1", 10);
+    await productRepository.create(product1);
 
-    const orderItemOne = new OrderItem(
-      "orderItemId",
-      productOne.id,
-      productOne.name,
-      productOne.price,
+    const orderItem1 = new OrderItem(
+      "orderItemId1",
+      product1.id,
+      product1.name,
+      product1.price,
       2
     );
 
-    const customerTwo = new Customer("customerId", "Customer name");
-    const addressTwo = new Address("Street", 1, "postalCode", "City name");
-    customerTwo.changeAddress(addressTwo);
-    await customerRepository.create(customerTwo);
+    const product2 = new Product("productId2", "Product name 2", 20);
+    await productRepository.create(product2);
 
-    const productTwo = new Product("productId", "Product name", 10);
-    await productRepository.create(productTwo);
-
-    const orderItemTwo = new OrderItem(
-      "orderItemId",
-      productTwo.id,
-      productTwo.name,
-      productTwo.price,
-      2
+    const orderItem2 = new OrderItem(
+      "orderItemId2",
+      product2.id,
+      product2.name,
+      product2.price,
+      1
     );
 
-    const orderOne = new Order("orderIdOne", "customerIdOne", [orderItemOne]);
-    const orderTwo = new Order("orderIdTwo", "customerIdTwo", [
-      orderItemOne,
-      orderItemTwo,
+    const product3 = new Product("productId3", "Product name 3", 40);
+    await productRepository.create(product3);
+
+    const orderItem3 = new OrderItem(
+      "orderItemId3",
+      product3.id,
+      product3.name,
+      product3.price,
+      3
+    );
+
+    const order1 = new Order("orderId1", "customerId1", [orderItem1]);
+    const order2 = new Order("orderId2", "customerId1", [
+      orderItem2,
+      orderItem3,
     ]);
 
     const orderRepository = new OrderRepository();
-    orderRepository.create(orderOne);
-    orderRepository.create(orderTwo);
+    await orderRepository.create(order1);
+    await orderRepository.create(order2);
 
     const orders = await orderRepository.findAll();
 
     expect(orders).toHaveLength(2);
-    expect(orders).toContainEqual(orderOne);
-    expect(orders).toContainEqual(orderTwo);
+    expect(orders).toContainEqual(order1);
+    expect(orders).toContainEqual(order2);
   });
 });
