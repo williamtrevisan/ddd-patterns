@@ -273,11 +273,11 @@ describe("Order repository test", () => {
     expect(order).toStrictEqual(orderResult);
   });
 
-  it("should be throw a error if dont find a order", () => {
+  it("should throw a error if dont find a order", () => {
     expect(async () => {
       const orderRepository = new OrderRepository();
       const orderResult = await orderRepository.find("orderId");
-    }).toThrowError("Order not found.");
+    }).rejects.toThrow("Order not found.");
   });
 
   it("should find all orders", async () => {

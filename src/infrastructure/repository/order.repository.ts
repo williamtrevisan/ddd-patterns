@@ -66,28 +66,34 @@ class OrderRepository implements OrderRepositoryInterface {
   }
 
   async find(id: string): Promise<Order> {
-    const orderModel = await OrderModel.findOne({
-      where: {
-        id,
-      },
-      include: ["items"],
-    });
-    if (!orderModel) throw new Error("Order not found.");
+    let orderModel: OrderModel;
 
-    let items: OrderItem[] = [];
-    if (orderModel.items.length) {
-      items = orderModel.items.map((item) => {
-        return new OrderItem(
-          item.id,
-          item.product_id,
-          item.name,
-          item.price,
-          item.quantity
-        );
+    try {
+      orderModel = await OrderModel.findOne({
+        where: {
+          id,
+        },
+        include: ["items"],
+        rejectOnEmpty: true,
       });
+    } catch (error) {
+      throw new Error("Order not found.");
     }
 
-    return new Order(id, orderModel.customer_id, items);
+    let items: OrderItem[] = [];
+      if (orderModel.items.length) {
+        items = orderModel.items.map((item) => {
+          return new OrderItem(
+            item.id,
+            item.product_id,
+            item.name,
+            item.price,
+            item.quantity
+          );
+        });
+      }
+  
+      return new Order(id, orderModel.customer_id, items);
   }
 
   async findAll(): Promise<Order[]> {
