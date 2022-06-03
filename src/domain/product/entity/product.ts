@@ -1,5 +1,7 @@
+import { ProductInterface } from "./product.interface";
+
 /* eslint-disable no-underscore-dangle */
-class Product {
+class Product implements ProductInterface {
   private _id: string;
   private _name: string;
   private _price: number;
