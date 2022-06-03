@@ -81,19 +81,19 @@ class OrderRepository implements OrderRepositoryInterface {
     }
 
     let items: OrderItem[] = [];
-      if (orderModel.items.length) {
-        items = orderModel.items.map((item) => {
-          return new OrderItem(
-            item.id,
-            item.product_id,
-            item.name,
-            item.price,
-            item.quantity
-          );
-        });
-      }
-  
-      return new Order(id, orderModel.customer_id, items);
+    if (orderModel.items.length) {
+      items = orderModel.items.map((item) => {
+        return new OrderItem(
+          item.id,
+          item.product_id,
+          item.name,
+          item.price,
+          item.quantity
+        );
+      });
+    }
+
+    return new Order(id, orderModel.customer_id, items);
   }
 
   async findAll(): Promise<Order[]> {
