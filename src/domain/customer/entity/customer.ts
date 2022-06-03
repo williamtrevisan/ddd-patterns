@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { Address } from "./address";
+import { Address } from "../value_object/address";
 
 class Customer {
   private _id: string;

@@ -1,4 +1,5 @@
-import { EventInterface } from "../../@shared/event.interface";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { EventInterface } from "../../@shared/event/event.interface";
 
 class CustomerCreatedEvent implements EventInterface {
   dataTimeOccurred: Date;
