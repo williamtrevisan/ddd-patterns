@@ -3,7 +3,7 @@ import { CustomerAddressChangedEvent } from "../customer_address_changed.event";
 
 class SendConsoleLogWhenCustomerAddressIsChangedHandler implements EventHandlerInterface<CustomerAddressChangedEvent> {
   handle(event: CustomerAddressChangedEvent): void {
-    console.log(event.eventData);
+    console.log(`Endereço do cliente: ${ event.eventData.id }, ${ event.eventData.name } alterado para: ${ event.eventData.address.number } ${ event.eventData.address.street }, ${ event.eventData.address.city }, ${ event.eventData.address.zip }`);
   }
 }
 
