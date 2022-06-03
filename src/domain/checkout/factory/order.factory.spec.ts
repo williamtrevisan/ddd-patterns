@@ -1,5 +1,7 @@
 import { v4 as uuidV4 } from "uuid";
 
+import { OrderFactory } from "./order.factory";
+
 describe("Order factory unit tests", () => {
   it("should create an order", () => {
     const orderProps = {
