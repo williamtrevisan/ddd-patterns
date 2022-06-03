@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize-typescript";
 
+import { Order } from "../../domain/checkout/entity/order";
+import { OrderItem } from "../../domain/checkout/entity/order_item";
 import { Address } from "../../domain/entity/address";
 import { Customer } from "../../domain/entity/customer";
-import { Order } from "../../domain/entity/order";
-import { OrderItem } from "../../domain/entity/order_item";
 import { Product } from "../../domain/entity/product";
 import { CustomerModel } from "../db/sequelize/model/customer.model";
 import { OrderItemModel } from "../db/sequelize/model/order_item.model";
@@ -276,6 +276,7 @@ describe("Order repository test", () => {
   it("should throw a error if dont find a order", () => {
     expect(async () => {
       const orderRepository = new OrderRepository();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const orderResult = await orderRepository.find("orderId");
     }).rejects.toThrow("Order not found.");
   });
