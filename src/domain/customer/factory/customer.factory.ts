@@ -14,6 +14,17 @@ class CustomerFactory {
 
     return customer;
   }
+
+  public static createWithAddressAndActive(
+    name: string,
+    address: Address
+  ): Customer {
+    const customer = new Customer(uuidV4(), name);
+    customer.changeAddress(address);
+    customer.activate();
+
+    return customer;
+  }
 }
 
 export { CustomerFactory };

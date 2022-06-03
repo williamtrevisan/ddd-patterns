@@ -19,4 +19,18 @@ describe("Customer factory unit test", () => {
     expect(customer.name).toBe("William");
     expect(customer.address).toBe(address);
   });
+
+  it("should create a customer with address and activated", () => {
+    const address = new Address("Street name", 1, "zipcode", "City name");
+
+    const customer = CustomerFactory.createWithAddressAndActive(
+      "William",
+      address
+    );
+
+    expect(customer.id).toBeDefined();
+    expect(customer.name).toBe("William");
+    expect(customer.isActive()).toBeTruthy();
+    expect(customer.address).toBe(address);
+  });
 });
