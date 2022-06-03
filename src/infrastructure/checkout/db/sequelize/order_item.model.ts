@@ -7,8 +7,8 @@ import {
   Table,
 } from "sequelize-typescript";
 
+import { ProductModel } from "../../../product/db/sequelize/product.model";
 import { OrderModel } from "./order.model";
-import { ProductModel } from "./product.model";
 
 @Table({
   tableName: "order_items",
