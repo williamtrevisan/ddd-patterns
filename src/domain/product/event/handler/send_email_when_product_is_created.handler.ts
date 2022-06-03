@@ -1,4 +1,4 @@
-import { EventHandlerInterface } from "../../@shared/event_handler.interface";
+import { EventHandlerInterface } from "../../../@shared/event_handler.interface";
 import { ProductCreatedEvent } from "../product_created.event";
 
 class SendEmailWhenProductIsCreatedHandler

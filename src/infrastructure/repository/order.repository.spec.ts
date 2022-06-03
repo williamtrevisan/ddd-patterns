@@ -4,7 +4,7 @@ import { Order } from "../../domain/checkout/entity/order";
 import { OrderItem } from "../../domain/checkout/entity/order_item";
 import { Address } from "../../domain/entity/address";
 import { Customer } from "../../domain/entity/customer";
-import { Product } from "../../domain/entity/product";
+import { Product } from "../../domain/product/entity/product";
 import { CustomerModel } from "../db/sequelize/model/customer.model";
 import { OrderItemModel } from "../db/sequelize/model/order_item.model";
 import { OrderModel } from "../db/sequelize/model/order.model";

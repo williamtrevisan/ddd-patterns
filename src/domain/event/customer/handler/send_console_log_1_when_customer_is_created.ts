@@ -1,4 +1,4 @@
-import { EventHandlerInterface } from "../../@shared/event_handler.interface";
+import { EventHandlerInterface } from "../../../@shared/event_handler.interface";
 import { CustomerCreatedEvent } from "../custumer_created.event";
 
 class SendConsoleLog1WhenCustomerIsCreatedHandler

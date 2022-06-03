@@ -1,12 +1,12 @@
-import { Address } from "../../entity/address";
-import { Customer } from "../../entity/customer";
-import { CustomerAddressChangedEvent } from "../customer/customer_address_changed.event";
-import { CustomerCreatedEvent } from "../customer/custumer_created.event";
-import { SendConsoleLog1WhenCustomerIsCreatedHandler } from "../customer/handler/send_console_log_1_when_customer_is_created";
-import { SendConsoleLog2WhenCustomerIsCreatedHandler } from "../customer/handler/send_console_log_2_when_customer_is_created";
-import { SendConsoleLogWhenCustomerAddressIsChangedHandler } from "../customer/handler/send_console_log_when_customer_address_is_changed";
-import { SendEmailWhenProductIsCreatedHandler } from "../product/handler/send_email_when_product_is_created.handler";
-import { ProductCreatedEvent } from "../product/product_created.event";
+import { Address } from "../entity/address";
+import { Customer } from "../entity/customer";
+import { CustomerAddressChangedEvent } from "../event/customer/customer_address_changed.event";
+import { CustomerCreatedEvent } from "../event/customer/custumer_created.event";
+import { SendConsoleLog1WhenCustomerIsCreatedHandler } from "../event/customer/handler/send_console_log_1_when_customer_is_created";
+import { SendConsoleLog2WhenCustomerIsCreatedHandler } from "../event/customer/handler/send_console_log_2_when_customer_is_created";
+import { SendConsoleLogWhenCustomerAddressIsChangedHandler } from "../event/customer/handler/send_console_log_when_customer_address_is_changed";
+import { SendEmailWhenProductIsCreatedHandler } from "../product/event/handler/send_email_when_product_is_created.handler";
+import { ProductCreatedEvent } from "../product/event/product_created.event";
 import { EventDispatcher } from "./event-dispatcher";
 
 describe("Domain events tests", () => {
