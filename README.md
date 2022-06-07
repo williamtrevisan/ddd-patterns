@@ -3,7 +3,7 @@
 ```bash
 # Clonar repositório
 git clone https://github.com/williamtrevisan/ddd-patterns.git
-git clone git@github.com:williamtrevisan/challenge-docker-nginx-and-nodejs.git
+git clone git@github.com:williamtrevisan/ddd-patterns.git
 
 # Entrar na pasta do projeto
 cd ddd-patterns
